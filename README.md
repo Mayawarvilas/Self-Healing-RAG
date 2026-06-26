@@ -135,3 +135,9 @@ decide_retrieval
 generate_direct
    ↓
 END
+
+# How to Run 
+
+Open the Repo in your local 
+
+Run the command streamlit run main.py
