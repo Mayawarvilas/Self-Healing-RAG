@@ -196,7 +196,33 @@ class VectorStore:
         return retriever
     
 # Defining our LLM
-groq_api = os.getenv("GROQ_API_KEY") or os.getenv("groq_api")
+# Defining our LLM
+
+try:
+    groq_api = st.secrets["groq_api"]
+except Exception:
+    groq_api = None
+
+# Fallback for local development
+if not groq_api:
+    groq_api = (
+        os.getenv("GROQ_API_KEY")
+        or os.getenv("groq_api")
+    )
+
+# Validate API key
+if not groq_api:
+    raise ValueError(
+        "Groq API key not found. "
+        "Please configure groq_api in Streamlit Cloud Secrets."
+    )
+
+llm = ChatGroq(
+    groq_api_key=groq_api,
+    model_name="llama-3.1-8b-instant",
+    temperature=0,
+    max_tokens=1024,
+)
 
 llm = ChatGroq(
     groq_api_key = groq_api,
