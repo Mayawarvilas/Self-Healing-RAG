@@ -217,16 +217,11 @@ if not groq_api:
         "Please configure groq_api in Streamlit Cloud Secrets."
     )
 
-llm = ChatGroq(
-    groq_api_key=groq_api,
-    model_name="llama-3.1-8b-instant",
-    temperature=0,
-    max_tokens=1024,
-)
+
 
 llm = ChatGroq(
     groq_api_key = groq_api,
-    model_name="llama-3.1-8b-instant",
+    model_name="openai/gpt-oss-20b",
     temperature=0,
     max_tokens=1024,
 )
