@@ -976,7 +976,15 @@ loader = PDFReader()
 splitter = TextSplitter(loader=loader)
 embeddings = EmbeddingsGenerator().model
 vectorstore = VectorStore(splitter,embeddings)
-vectorstore.add_documents(r'C:\Users\VILAS\OneDrive\Desktop\projects\Self_RAG\budget_speech.pdf')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DEFAULT_PDF = os.path.join(
+    BASE_DIR,
+    "budget_speech.pdf"
+)
+
+vectorstore.add_documents(DEFAULT_PDF)
+
 retriever = vectorstore.get_retriever(k=5)
 
 
