@@ -195,7 +195,7 @@ class VectorStore:
         return retriever
     
 # Defining our LLM
-groq_api = os.getenv('groq_api')
+groq_api = os.getenv("GROQ_API_KEY") or os.getenv("groq_api")
 
 llm = ChatGroq(
     groq_api_key = groq_api,
